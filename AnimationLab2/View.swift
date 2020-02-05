@@ -81,15 +81,7 @@ class View: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor)
+            stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 50)
         ])
     }
-    
-//    private func setupLinearButton() {
-//        addSubview(linearButton)
-//        linearButton.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            linearButton.topAnchor
-//        ])
-//    }
 }
