@@ -167,4 +167,20 @@ class View: UIView {
             imageStackView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20)
         ])
     }
+    
+    @objc private func linearButtonPressed() {
+        image1.isHidden = true
+    }
+    
+    @objc private func easeInButtonPressed() {
+        image2.isHidden = true
+    }
+    
+    @objc private func easeOutButtonPressed() {
+        image3.isHidden = true
+    }
+    
+    @objc private func easeInOutButtonPressed() {
+        image4.isHidden = true
+    }
 }
