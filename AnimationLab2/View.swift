@@ -42,6 +42,7 @@ class View: UIView {
         let linear = UIButton()
         linear.setTitle("Linear", for: .normal)
         linear.backgroundColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+        linear.addTarget(self, action: #selector(linearButtonPressed), for: .touchUpInside)
         return linear
     }()
     
@@ -49,6 +50,7 @@ class View: UIView {
         let linear = UIButton()
         linear.setTitle("EaseIn", for: .normal)
         linear.backgroundColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+        linear.addTarget(self, action: #selector(easeInButtonPressed), for: .touchUpInside)
         return linear
     }()
     
@@ -56,6 +58,7 @@ class View: UIView {
         let linear = UIButton()
         linear.setTitle("EaseOut", for: .normal)
         linear.backgroundColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+        linear.addTarget(self, action: #selector(easeOutButtonPressed), for: .touchUpInside)
         return linear
     }()
     
@@ -63,6 +66,7 @@ class View: UIView {
         let linear = UIButton()
         linear.setTitle("EaseInOut", for: .normal)
         linear.backgroundColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+        linear.addTarget(self, action: #selector(easeInOutButtonPressed), for: .touchUpInside)
         return linear
     }()
     
@@ -70,6 +74,7 @@ class View: UIView {
         let linear = UIButton()
         linear.setTitle("Reset", for: .normal)
         linear.backgroundColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+        linear.addTarget(self, action: #selector(resetbuttonPressed), for: .touchUpInside)
         return linear
     }()
     
@@ -77,6 +82,7 @@ class View: UIView {
         let linear = UIButton()
         linear.setTitle("Animate", for: .normal)
         linear.backgroundColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+        linear.addTarget(self, action: #selector(animateButtonPressed), for: .touchUpInside)
         return linear
     }()
     
@@ -86,6 +92,7 @@ class View: UIView {
         let image = UIImageView()
         image.image = UIImage(named: "TseringTest")
         image.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        image.alpha = 1
         return image
     }()
     
@@ -93,6 +100,7 @@ class View: UIView {
         let image = UIImageView()
         image.image = UIImage(named: "TseringTest")
         image.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        image.alpha = 1
         return image
     }()
     
@@ -100,6 +108,7 @@ class View: UIView {
         let image = UIImageView()
         image.image = UIImage(named: "TseringTest")
         image.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        image.alpha = 1
         return image
     }()
     
@@ -107,6 +116,7 @@ class View: UIView {
         let image = UIImageView()
         image.image = UIImage(named: "TseringTest")
         image.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        image.alpha = 1
         return image
     }()
     
@@ -160,7 +170,7 @@ class View: UIView {
     
     private func setupImages() {
         addSubview(imageStackView)
-        imageStackView.spacing = 30
+        imageStackView.spacing = 20
         imageStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             imageStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -169,18 +179,64 @@ class View: UIView {
     }
     
     @objc private func linearButtonPressed() {
-        image1.isHidden = true
+        if image1.alpha == 1 {
+            image1.alpha = 0
+        } else {
+            image1.alpha = 1
+        }
     }
     
     @objc private func easeInButtonPressed() {
-        image2.isHidden = true
+        if image2.alpha == 1 {
+            image2.alpha = 0
+        } else {
+            image2.alpha = 1
+        }
     }
     
     @objc private func easeOutButtonPressed() {
-        image3.isHidden = true
+        if image3.alpha == 1 {
+            image3.alpha = 0
+        } else {
+            image3.alpha = 1
+        }
     }
     
     @objc private func easeInOutButtonPressed() {
-        image4.isHidden = true
+        if image4.alpha == 1 {
+            image4.alpha = 0
+        } else {
+            image4.alpha = 1
+        }
+    }
+    
+    @objc private func animateButtonPressed() {
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveLinear], animations: {
+            self.image1.transform = CGAffineTransform(translationX: 0, y: 350)
+        }, completion: nil)
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveEaseIn], animations: {
+            self.image2.transform = CGAffineTransform(translationX: 0, y: 350)
+        }, completion: nil)
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveEaseOut], animations: {
+            self.image3.transform = CGAffineTransform(translationX: 0, y: 350)
+        }, completion: nil)
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveEaseInOut], animations: {
+            self.image4.transform = CGAffineTransform(translationX: 0, y: 350)
+        }, completion: nil)
+    }
+    
+    @objc private func resetbuttonPressed() {
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveLinear], animations: {
+            self.image1.transform = CGAffineTransform(translationX: 0, y: -350)
+        }, completion: nil)
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveLinear], animations: {
+            self.image2.transform = CGAffineTransform(translationX: 0, y: -350)
+        }, completion: nil)
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveLinear], animations: {
+            self.image3.transform = CGAffineTransform(translationX: 0, y: -350)
+        }, completion: nil)
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveLinear], animations: {
+            self.image4.transform = CGAffineTransform(translationX: 0, y: -350)
+        }, completion: nil)
     }
 }
